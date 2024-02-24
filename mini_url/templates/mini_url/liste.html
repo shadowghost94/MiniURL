@@ -1,0 +1,14 @@
+<h1>Le racourcisseur d'URL spécial crêpes bretonnes !</h1>
+<p> <a href="{% url 'url_nouveau' %}">Racourcir une URL</a> </p>
+
+<p>Liste des URL racourcies</p>
+<ul>
+    {% for mini in minis %}
+    <li>
+        {{ mini.url }} via <a href="http://{{ request.get_host }} {% url 'url_redirection' mini.code %}"> {{ request.get_host }} {% url 'url_redirection' mini.code %}</a>
+        {% if mini.pseudo %} par {{ mini.pseudo }} {% endif %} ({{ mini.nb_acces }} accès)
+    </li>
+    {% empty %}
+    <li>Il n'y en a pas actuellement.</li>
+    {% endfor %}
+</ul>
